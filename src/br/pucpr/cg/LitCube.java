@@ -51,25 +51,25 @@ public class LitCube implements Scene {
     public void draw() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        Shader shader = mesh.getShader();
-        shader.bind()
-            //Camera
-            .setUniform("uProjection", camera.getProjectionMatrix())
-            .setUniform("uView", camera.getViewMatrix())
-            .setUniform("uCameraPos", camera.getPosition())
+        mesh.getShader()
+            .bind()
+                //Camera
+                .setUniform("uProjection", camera.getProjectionMatrix())
+                .setUniform("uView", camera.getViewMatrix())
+                .setUniform("uCameraPos", camera.getPosition())
 
-            //Luz
-            .setUniform("uLightDir", new Vector3f(1.0f, -1.0f, -1.0f))
-            .setUniform("uAmbientLight", new Vector3f(0.1f, 0.1f, 0.1f))   //Penumbra
-            .setUniform("uDiffuseLight", new Vector3f(1.0f, 1.0f, 0.8f))   //Luz amarelada
-            .setUniform("uSpecularLight", new Vector3f(1.0f, 1.0f, 1.0f))   //Luz amarelada
+                //Luz
+                .setUniform("uLightDir", new Vector3f(1.0f, -1.0f, -1.0f))
+                .setUniform("uAmbientLight", new Vector3f(0.1f, 0.1f, 0.1f))   //Penumbra
+                .setUniform("uDiffuseLight", new Vector3f(1.0f, 1.0f, 0.8f))   //Luz amarelada
+                .setUniform("uSpecularLight", new Vector3f(1.0f, 1.0f, 1.0f))   //Luz amarelada
 
-            //Material
-            .setUniform("uAmbientMaterial", new Vector3f(0.5f, 0.0f, 0.5f))
-            .setUniform("uDiffuseMaterial", new Vector3f(0.5f, 0.0f, 0.5f))
-            .setUniform("uSpecularMaterial", new Vector3f(1.0f, 1.0f, 1.0f))
-            .setUniform("uSpecularPower", 32.0f)
-        .unbind();
+                //Material
+                .setUniform("uAmbientMaterial", new Vector3f(0.5f, 0.0f, 0.5f))
+                .setUniform("uDiffuseMaterial", new Vector3f(0.5f, 0.0f, 0.5f))
+                .setUniform("uSpecularMaterial", new Vector3f(1.0f, 1.0f, 1.0f))
+                .setUniform("uSpecularPower", 32.0f)
+            .unbind();
 
         mesh.setUniform("uWorld", new Matrix4f().rotateY(angleY).rotateX(angleX));
         mesh.draw();
