@@ -5,7 +5,7 @@ uniform vec3 uLightDir;         //Direcao da luz
 //Componentes da luz
 uniform vec3 uAmbientLight;     //Cor do componente ambiente
 uniform vec3 uDiffuseLight;     //Cor do componente difuso
-uniform vec3 uSpecularLight;     //Cor do componente difuso
+uniform vec3 uSpecularLight;     //Cor do componente especular
 
 //Características do material
 uniform vec3 uAmbientMaterial;
@@ -31,12 +31,12 @@ void main() {
     vec3 diffuse = diffuseIntensity * uDiffuseLight * uDiffuseMaterial;
 
     //Calculo do componente especular. A intensidade do é equivalente ao cosseno do angulo entre o caminho da visão (V)
-    //e o reflexo da luz sobre a superfície (R). O cosseno também poderá ser calculado pelo produto escalar.
+    //e o reflexo da luz sobre a superfície (R). O cosseno é calculado pelo produto escalar.
     float specularIntensity = 0.0;
     if (uSpecularPower > 0.0) {
         vec3 V = normalize(vViewPath);
         vec3 R = reflect(L, N);
-        specularIntensity = pow(max(dot(R, V), 0.0), uSpecularPower);
+        specularIntensity = pow(max(dot(V, R), 0.0), uSpecularPower);
     }
     vec3 specular = specularIntensity * uSpecularLight * uSpecularMaterial;
 
