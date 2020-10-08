@@ -62,16 +62,17 @@ public class LitCube implements Scene {
             .setUniform("uAmbientLight", new Vector3f(0.1f, 0.1f, 0.1f))   //Penumbra
             .setUniform("uDiffuseLight", new Vector3f(1.0f, 1.0f, 0.8f))   //Luz amarelada
             .setUniform("uSpecularLight", new Vector3f(1.0f, 1.0f, 1.0f))   //Luz amarelada
+        .unbind();
 
-            //Material
+        mesh
+            //Transformação
+            .setUniform("uWorld", new Matrix4f().rotateY(angleY).rotateX(angleX))
+            //Maerial
             .setUniform("uAmbientMaterial", new Vector3f(0.5f, 0.0f, 0.5f))
             .setUniform("uDiffuseMaterial", new Vector3f(0.5f, 0.0f, 0.5f))
             .setUniform("uSpecularMaterial", new Vector3f(1.0f, 1.0f, 1.0f))
             .setUniform("uSpecularPower", 32.0f)
-        .unbind();
-
-        mesh.setUniform("uWorld", new Matrix4f().rotateY(angleY).rotateX(angleX));
-        mesh.draw(shader);
+        .draw(shader);
     }
 
     @Override
