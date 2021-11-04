@@ -1,4 +1,4 @@
-# Aula 05 - Iluminação: Componentes ambiente e difuso
+# Aula 05 - Iluminação: Componentes especular e materiais
 
 Neste repositório apresentamos o código intermediário da aula de iluminação contendo também o componente especular e os 
 materiais.
